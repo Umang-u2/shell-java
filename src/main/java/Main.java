@@ -5,8 +5,10 @@ public class Main {
         // Uncomment this block to pass the first stage
         System.out.print("$ ");
 
-        Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        System.out.println(input+": command not found");
+        for(int i=0;i<10;i++){
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            System.out.println(input+": command not found");
+        }
     }
 }
