@@ -8,8 +8,12 @@ public class Main {
             System.out.print("$ ");
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
-            if(input.equalsIgnoreCase("exit 0")){
+            String command = input.split("\\s+")[0];
+            int firstSpaceIndex = input.indexOf(" ");
+            if(command.equalsIgnoreCase("exit")){
                 return;
+            } else if(command.equalsIgnoreCase("echo")){
+                System.out.println((firstSpaceIndex == -1)?"":input.substring(firstSpaceIndex+1));
             }
             else {
                 System.out.println(input + ": command not found");
