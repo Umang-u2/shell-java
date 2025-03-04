@@ -22,7 +22,7 @@ public class Main {
                 if(acceptedCommands.contains(arguments)) {
                     System.out.println(arguments + " is a shell builtin");
                 } else {
-                    System.out.println(arguments+" command not found");
+                    System.out.println(arguments+": not found");
                 }
             }
             else {
