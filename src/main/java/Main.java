@@ -18,8 +18,12 @@ public class Main {
                 return;
             } else if(command.equalsIgnoreCase("echo")){
                 System.out.println(arguments);
-            } else if(command.equalsIgnoreCase("type") && acceptedCommands.contains(arguments)){
-                System.out.println(arguments+" is a shell builtin");
+            } else if(command.equalsIgnoreCase("type")){
+                if(acceptedCommands.contains(arguments)) {
+                    System.out.println(arguments + " is a shell builtin");
+                } else {
+                    System.out.println(arguments+" command not found");
+                }
             }
             else {
                 System.out.println(input + ": command not found");
