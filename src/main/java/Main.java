@@ -1,5 +1,8 @@
 import shellFunctions.Pathfinder;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -45,7 +48,7 @@ public class Main {
                             parameter.equals(builtins.get(2))) {
                         System.out.println(parameter + " is a shell builtin");
                     } else {
-                        String path = getPath(parameter);
+                            String path = getPath(parameter);
                         if (path != null) {
                             System.out.println(parameter + " is " + path);
                         } else {
@@ -54,7 +57,7 @@ public class Main {
                     }
                     break;
                 default:
-                    System.out.println(input + ": command not found");
+                    runCommand(command, parameter);
             }
         }
     }
@@ -73,6 +76,37 @@ public class Main {
         builtins.add("echo");
         builtins.add("type");
         return builtins;
+    }
+
+    public static void runCommand(String command, String args){
+        try {
+            // Get the full path of the command
+            String commandPath = getPath(command);
+            if (commandPath == null) {
+                System.out.println(command + ": command not found");
+                return;
+            }
+            // Create a new process
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.command(commandPath, args);
+
+            processBuilder.redirectErrorStream(true);
+
+            Process process = processBuilder.start();
+
+            // Read the output of the command
+            try (BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    System.out.println(line);
+                }
+            }
+            // Wait for the process to complete
+            int exitCode = process.waitFor();
+            System.out.println("Process exited with code: " + exitCode);
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
 
