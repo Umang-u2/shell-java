@@ -102,7 +102,7 @@ public class Main {
                     System.out.println(line);
                 }
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
