@@ -102,9 +102,6 @@ public class Main {
                     System.out.println(line);
                 }
             }
-            // Wait for the process to complete
-            int exitCode = process.waitFor();
-            System.out.println("Process exited with code: " + exitCode);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
