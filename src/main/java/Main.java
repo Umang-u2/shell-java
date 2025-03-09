@@ -82,10 +82,12 @@ public class Main {
         try {
             // Get the full path of the command
             String commandPath = getPath(command);
-            String mainCommand = Path.of(commandPath).getFileName().toString();
+            String mainCommand = "";
             if (mainCommand == null) {
                 System.out.println(command + ": command not found");
                 return;
+            } else {
+                mainCommand = Path.of(commandPath).getFileName().toString();
             }
             // Create a new process
             ProcessBuilder processBuilder = new ProcessBuilder();
