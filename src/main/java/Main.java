@@ -83,7 +83,7 @@ public class Main {
             // Get the full path of the command
             String commandPath = getPath(command);
             String mainCommand = "";
-            if (mainCommand == null) {
+            if (commandPath == null) {
                 System.out.println(command + ": command not found");
                 return;
             } else {
