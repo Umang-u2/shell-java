@@ -84,6 +84,7 @@ public class Main {
         builtins.add("exit");
         builtins.add("echo");
         builtins.add("type");
+        builtins.add("pwd");
         return builtins;
     }
 
