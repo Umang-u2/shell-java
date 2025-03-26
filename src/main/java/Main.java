@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -56,6 +57,9 @@ public class Main {
                         }
                     }
                     break;
+                case "pwd":
+                    System.out.println(getAbsolutePath());
+                    break;
                 default:
                     runCommand(command, parameter);
             }
@@ -70,6 +74,11 @@ public class Main {
         }
         return null;
     }
+
+    private static String getAbsolutePath(){
+        return Paths.get("").toAbsolutePath().toString();
+    }
+
     private static List<String> builtins() {
         List<String> builtins = new ArrayList<>();
         builtins.add("exit");
